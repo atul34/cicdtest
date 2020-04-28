@@ -11,7 +11,7 @@ pipeline {
 
     stage('Checkout Source') {
       steps {
-        git 'https://github.com/atul34/mycoderepo.git'
+        git 'https://github.com/atul34/cicdtest.git'
       }
     }
 

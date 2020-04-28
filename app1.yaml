@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    environment: dev
+    app-name: app1
+  name: webserver-deployment
+  namespace: dev
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      environment: dev
+      app-name: app1
+  template:
+    metadata:
+      labels:
+        environment: dev
+        app-name: app1
+    spec:
+      containers:
+        - name: app1
+          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-webserv:1
+          ImagePullPolicy: Always
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  labels:
+    app-name: app1
+
+spec:
+  type: NodePort
+  ports:
+  - port: 80
+    targetPort: 80
+    protocol: TCP
+    name: http
+    nodePort: 30080
+  selector:
+    app-name: app1
+

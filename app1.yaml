@@ -27,6 +27,7 @@ metadata:
   name: app-service
   labels:
     app-name: app1
+    namespace: dev
 
 spec:
   type: NodePort
@@ -38,3 +39,19 @@ spec:
     nodePort: 30080
   selector:
     app-name: app1
+
+---
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: app-ingree
+  namespace: dev
+spec:
+  rules:
+  - host: nginx-test.flavoursofindia.eu
+    http:
+      paths:
+      - backend:
+          serviceName: app-service
+          servicePort: 80
+

@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-webserv:1
+          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-webserv:v1
           ImagePullPolicy: Always
 ---
 

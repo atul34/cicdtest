@@ -6,10 +6,14 @@ metadata:
   name: webserver-deployment
   namespace: dev
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app-name: app1
+  updateStrategy: 
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -17,7 +21,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-nginx:2
+          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-nginx:3
           imagePullPolicy: Always
 ---
 

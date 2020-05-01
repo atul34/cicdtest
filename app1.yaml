@@ -10,10 +10,6 @@ spec:
   selector:
     matchLabels:
       app-name: app1
-  updateStrategy: 
-    type: RollingUpdate
-    rollingUpdate: 
-      maxUnavailable: 1
   template:
     metadata:
       labels:

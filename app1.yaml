@@ -10,6 +10,10 @@ spec:
   selector:
     matchLabels:
       app-name: app1
+  updateStrategy: 
+    type: RollingUpdate
+    rollingUpdate: 
+      maxUnavailable: 1
   template:
     metadata:
       labels:
@@ -17,7 +21,7 @@ spec:
     spec:
       containers:
         - name: app1
-          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-webserv:2
+          image: docker-registry.flavoursofindia.eu:5000/webserver/centos-nginx:1
           imagePullPolicy: Always
 ---
 
@@ -31,27 +35,28 @@ metadata:
     namespace: dev
 
 spec:
-  type: ClusterIP
+  type: NodePort
   ports:
   - port: 80
     targetPort: 80
+    nodePort: 30080
     protocol: TCP
     name: http
   selector:
     app-name: app1
 
----
-apiVersion: extensions/v1beta1
-kind: Ingress
-metadata:
-  name: app-ingree
-  namespace: dev
-spec:
-  rules:
-  - host: nginx-test.flavoursofindia.eu
-    http:
-      paths:
-      - backend:
-          serviceName: app-service
-          servicePort: 80
-
+#---
+#apiVersion: extensions/v1beta1
+#kind: Ingress
+#metadata:
+#  name: app-ingree
+#  namespace: dev
+#spec:
+#  rules:
+#  - host: nginx-test.flavoursofindia.eu
+#    http:
+#      paths:
+#      - backend:
+#          serviceName: app-service
+#          servicePort: 80
+#

@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "docker-registry.flavoursofindia.eu:5000/webserver/centos-webserv"
+    registry = "docker-registry.flavoursofindia.eu:5000/webserver/centos-nginx"
     dockerImage = ""
   }
 

@@ -1,7 +1,7 @@
 pipeline {
 
   environment {
-    registry = "myserver:5000/webserver/centos-nginx"
+    registry = "13.74.97.206:5000/webserver/centos-nginx"
     dockerImage = ""
   }
 

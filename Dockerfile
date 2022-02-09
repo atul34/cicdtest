@@ -1,4 +1,4 @@
-FROM centos7:centos7.9.2009
+FROM centos:7.9.2009
 RUN yum install -y epel-release && yum install -y nginx && yum install -y git
 
 WORKDIR /etc/nginx
